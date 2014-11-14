@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>用户管理</title>
+	<link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css" />
+	<link rel="Stylesheet" type="text/css" href="../../assets/css/module.css" />
+	<link rel="Stylesheet" type="text/css" href="../../assets/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="../../assets/css/jquery.datetimepicker.css" />
+	<link rel="stylesheet" type="text/css" href="../../assets/css/colorbox.css" />
+	
+	<script type="text/javascript" src="../../assets/js/jquery.js"></script>
+	<script type="text/javascript" src="../../assets/js/jquery.datetimepicker.js"></script>
+	<script type="text/javascript" src="../../assets/js/bootstrap.js"></script>
+	
+	<script type="text/javascript" src="../../assets/js/common.js"></script>
+	<script type="text/javascript" src="../../assets/js/jquery.colorbox.js"></script>
+
+	<script type="text/javascript" src="../../assets/js/gri/gri.js"></script>
+	<script type="text/javascript" src="../../assets/js/gri/gri.datatable.js"></script>
+</head>
+
+<body class="definewidth m10">
+<form id="user-form" class="definewidth m20" >
+<input type="hidden" name="_method" value="POST"/>
+<table class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td class="tableleft">原密码</td>
+        <td><input type="password" name="oldpassword"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">新密码</td>
+        <td><input type="password" name="newpassword"/></td>
+    </tr>
+	<tr>
+        <td class="tableleft">再次输入新密码</td>
+        <td><input type="password" name="newpassword2"/></td>
+    </tr>
+	<tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="button" class="btn btn-primary submit" >提交</button>
+        </td>
+    </tr>
+</table>
+</form>
+<script>
+
+function mod(){
+	var oldpass = $("input[name=oldpassword]").val();
+	var newpass1 = $("input[name=newpassword]").val();
+	var newpass2 = $("input[name=newpassword2]").val();
+	if( newpass1 != newpass2 ){
+		_dialog("新密码两次输入不一致！");
+		return;
+	}
+	
+	var data = {
+		oldpassword:oldpass,
+		newpassword:newpass2
+	};
+	$.post("/password/mod",data,function(data){
+		data = JSON.parse(data);
+		if( data.code == 0)
+			_dialog("修改密码成功");
+	});
+}
+$(function(){
+	$(".submit").click(function(){
+		mod();
+	});
+});
+
+</script>
+</body>
+</html>
