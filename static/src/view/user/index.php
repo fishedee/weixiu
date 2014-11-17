@@ -1,100 +1,58 @@
-<?php require(__DIR__."/../common/header.php"); ?>
-<!-- 查询窗口 -->
-<form id="user-form" class="form-inline">
-    姓名：
-    <input type="text" name="name" class="input-small"/>
-	类型：
-    <select name="type">
-		<option value="">请选择类型</option>
-		<option value="0">管理员</option>
-		<option value="1">普通会员</option>
-    </select>
-	状态：
-    <select name="state">
-		<option value="">请选择状态</option>
-		<option value="0">可用</option>
-		<option value="1">不可用</option>
-    </select>
-    <button type="button" class="btn query">查询</button>
-    <button type="reset" class="btn">重置</button>
-</form>
-<div class="m10">
-    <button class="btn add">添加用户</button>
-    <div id="table"></div>
-</div>
-<div>
-</div>
-
-<script>
-function del(userId){
-	$.post("/user/del",{userId:userId},function(data){
-		var data = JSON.parse(data);
-        if(data.code == 0){
-			dt.refresh(); 
-		}
-	});
-}
-function view(userId){
-	_href('/user/view.html?userId=' + userId);
-}
-function modPass(userId){
-	_href('/user/password.html?userId=' + userId);
-}
-function add(){
-	_href('/user/view.html');
-}
-function get(params){
-	var fields = {
-		userId:"用户ID",
-        name: '姓名',
-        password: '密码',
-		type: {
-			name:'类型',
-			format:function(data){
-				var m = {0:"管理员",1:"普通用户"};
-				return m[data];
-			}
-		},
-		state: {
-			name:'状态',
-			format:function(data){
-				var m = {0:"可用",1:"不可用"};
-				return m[data];
-			}
-		},
-        createTime: '创建时间',
-        modifyTime: '修改时间',
-        oper:{
-			name:'操作',
-			format:function(data){
-				return "<a href='#' class='_edit'>编辑</a>&nbsp;<a href='#' class='_modpass'>修改密码</a>"
-			}
-		}
-    };
-    _table('/user/search', { key_index: 'userId', data: 'data', fields: fields,params:params}, function(){
-        $("._edit").unbind("click").click(function(){
-            var userId = $.trim($(this).parent().parent().find(".userId").text());
-            view(userId);
-        });
-        $("._modpass").unbind("click").click(function(){
-            var userId = $.trim($(this).parent().parent().find(".userId").text());
-			modPass(userId);
-        });
-    });
-}
-$(function(){
-	$(".query").unbind("click").click(function(){
-       get({
-			name:$("input[name=name]").val(),
-			type:$("select[name=type]").val(),
-			state:$("select[name=state]").val()
-	   });
-    });
-    $(".add").unbind("click").click(function(){
-       add();
-    });
-	get();
-});
-
-</script>
-<?php require(__DIR__."/../common/footer.php"); ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>微秀后台管理系统</title>
+</head>
+<body class="definewidth m10">
+	<div id="container">
+	</div>
+	<script type="text/javascript" src="/js/sea.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea-css.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript">
+		seajs.config({
+			charset: 'utf-8',
+			timeout: 20000,
+			map:[
+				[ /^(.*\.(js|css))(.*)$/i, '$1?t=<?php echo time();?>' ],
+			]
+		});
+		seajs.use(['lib/global','ui/query','ui/dialog'],function($,query,dialog){
+			query.simpleQuery({
+				id:'container',
+				url:'/user/search',
+				column:[
+					{id:'userId',type:'text',name:'用户ID'},
+					{id:'name',type:'text',name:'姓名'},
+					{id:'type',type:'enum',name:'类型',map:{'0':'管理员','1':'普通会员'}},
+					{id:'state',type:'enum',name:'状态',map:{'0':'可用','1':'不可用'}},
+					{id:'createTime',type:'text',name:'创建时间'},
+					{id:'modifyTime',type:'text',name:'修改时间'},
+				],
+				params:['name','type','state'],
+				operate:[
+				{
+					name:'编辑',
+					click:function(data){
+						location.href = 'view.html?userId='+data.userId;
+					}
+				},
+				{
+					name:'修改密码',
+					click:function(data){
+						location.href = 'modPass.html?userId='+data.userId;
+					}
+				}],
+				button:[
+				{
+					name:'添加用户',
+					click:function(){
+						location.href = 'add.html';
+					}
+				}
+				],
+			});
+		});
+	</script>
+ </body>
+</html>

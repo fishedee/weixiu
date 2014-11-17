@@ -1,53 +1,53 @@
-<?php require(__DIR__."/../common/header.php"); ?>
-<form id="user-form" class="definewidth m20" >
-<input type="hidden" name="_method" value="POST"/>
-<table class="table table-bordered table-hover definewidth m10">
-    <tr>
-        <td class="tableleft">原密码</td>
-        <td><input type="password" name="oldpassword"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">新密码</td>
-        <td><input type="password" name="newpassword"/></td>
-    </tr>
-	<tr>
-        <td class="tableleft">再次输入新密码</td>
-        <td><input type="password" name="newpassword2"/></td>
-    </tr>
-	<tr>
-        <td class="tableleft"></td>
-        <td>
-            <button type="button" class="btn btn-primary submit" >提交</button>
-        </td>
-    </tr>
-</table>
-</form>
-<script>
-
-function mod(){
-	var oldpass = $("input[name=oldpassword]").val();
-	var newpass1 = $("input[name=newpassword]").val();
-	var newpass2 = $("input[name=newpassword2]").val();
-	if( newpass1 != newpass2 ){
-		_dialog("新密码两次输入不一致！");
-		return;
-	}
-	
-	var data = {
-		oldpassword:oldpass,
-		newpassword:newpass2
-	};
-	$.post("/password/mod",data,function(data){
-		data = JSON.parse(data);
-		if( data.code == 0)
-			_dialog("修改密码成功");
-	});
-}
-$(function(){
-	$(".submit").click(function(){
-		mod();
-	});
-});
-
-</script>
-<?php require(__DIR__."/../common/footer.php"); ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>微秀后台管理系统</title>
+</head>
+<body class="definewidth m10">
+	<div id="container">
+	</div>
+	<script type="text/javascript" src="/js/sea.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea-css.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript">
+		seajs.config({
+			charset: 'utf-8',
+			timeout: 20000,
+			map:[
+				[ /^(.*\.(js|css))(.*)$/i, '$1?t=<?php echo time();?>' ],
+			]
+		});
+		seajs.use(['lib/global','ui/input','ui/dialog'],function($,input,dialog){
+			input.verticalInput({
+				id:'container',
+				field:[
+					{id:'oldPassword',type:'password',name:'旧密码'},
+					{id:'newPassword1',type:'password',name:'新密码'},
+					{id:'newPassword2',type:'password',name:'再输入一次新密码'},
+				],
+				submit:function(data){
+					if( data.newPassword1 != data.newPassword2 ){
+						dialog.message('两次输入密码不一致');
+						return;
+					}
+					data = {
+						oldpassword:data.oldPassword,
+						newpassword:data.newPassword1
+					};
+					$.post('/password/mod',data,function(data){
+						data = $.JSON.parse(data);
+						if( data.code != 0 ){
+							dialog.message(data.msg);
+							return;
+						}
+						dialog.message('修改密码成功');
+					});
+				},
+				cancel:function(){
+					location.href = 'index.html';
+				}
+			});
+		});
+	</script>
+ </body>
+</html>

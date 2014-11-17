@@ -1,95 +1,55 @@
-<?php require(__DIR__."/../common/header.php"); ?>
-<form id="user-form" class="definewidth m20" >
-<input type="hidden" name="_method" value="POST"/>
-<table class="table table-bordered table-hover definewidth m10">
-    <tr>
-        <td class="tableleft">姓名</td>
-        <td><input type="text" name="name"/></td>
-    </tr>
-	<tr>
-        <td class="tableleft">密码</td>
-        <td><input type="text" name="password"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">类型</td>
-        <td>
-        <select name="type">
-            <option value="0">管理员</option>
-            <option value="1">普通会员</option>
-        </select>
-        </td>
-    </tr>
-	<tr>
-        <td class="tableleft">状态</td>
-        <td>
-        <select name="state">
-            <option value="0">可用</option>
-            <option value="1">不可用</option>
-        </select>
-        </td>
-    </tr>
-    <tr>
-        <td class="tableleft"></td>
-        <td>
-            <button type="button" class="btn btn-primary submit" >提交</button>
-			<button type="button" class="btn btn-success" onclick="location.href='index.html'">返回列表</button>
-        </td>
-    </tr>
-</table>
-</form>
-<script>
-
-function get( userId ){
-	$.get("/user/get",{userId:userId},function(data){
-		data = JSON.parse(data);
-		if( data.code != 0 )
-			return;
-		var data = data.data;
-		$("input[name=name]").val(data.name);
-		$("input[name=password]").val(data.password);
-		$("select[name=type]").val(data.type);
-		$("select[name=state]").val(data.state);
-	});
-}
-function mod( userId ){
-	var data = {
-		userId:userId,
-		type:$("select[name=type]").val(),
-		state:$("select[name=state]").val()
-	};
-	$.post("/user/mod",data,function(data){
-		data = JSON.parse(data);
-		if( data.code == 0)
-			_href("/user/index.html");
-	});
-}
-function add(){
-	var data = {
-		name:$("input[name=name]").val(),
-		password:$("input[name=password]").val(),
-		type:$("select[name=type]").val(),
-		state:$("select[name=state]").val()
-	};
-	$.post("/user/add?t="+Math.random(),data,function(data){
-		data = JSON.parse(data);
-		if( data.code == 0)
-			_href("/user/index.html");
-	});
-}
-$(function(){
-    if( _get("userId") && _get("userId") != "null" ){
-		$("input[name=name]").attr("readonly","true");
-		$("input[name=password]").attr("readonly","true");
-		get(_get("userId"));
-		$(".submit").click(function(){
-			mod(_get("userId"));		
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>微秀后台管理系统</title>
+</head>
+<body class="definewidth m10">
+	<div id="container">
+	</div>
+	<script type="text/javascript" src="/js/sea.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea-css.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript">
+		seajs.config({
+			charset: 'utf-8',
+			timeout: 20000,
+			map:[
+				[ /^(.*\.(js|css))(.*)$/i, '$1?t=<?php echo time();?>' ],
+			]
 		});
-	}else{
-		$(".submit").click(function(){
-			add();
+		seajs.use(['lib/global','ui/input','ui/dialog'],function($,input,dialog){
+			var userId = $.location.getQueryArgv('userId');
+			$.get('/user/get',{userId:userId},function(data){
+				data = $.JSON.parse(data);
+				if( data.code != 0 ){
+					dialog.message(data.msg);
+					return;
+				}
+				input.verticalInput({
+					id:'container',
+					field:[
+						{id:'name',type:'text',name:'姓名'},
+						{id:'type',type:'enum',name:'类型',map:{'0':'管理员','1':'普通会员'}},
+						{id:'state',type:'enum',name:'状态',map:{'0':'可用','1':'不可用'}},
+					],
+					value:data.data,
+					submit:function(data){
+						data = $.extend({userId:userId},data);
+						$.post('/user/mod',data,function(data){
+							data = $.JSON.parse(data);
+							if( data.code != 0 ){
+								dialog.message(data.msg);
+								return;
+							}
+							location.href = 'index.html';
+						});
+					},
+					cancel:function(){
+						location.href = 'index.html';
+					}
+				});
+			});
 		});
-	}
-});
-
-</script>
-<?php require(__DIR__."/../common/footer.php"); ?>
+	</script>
+ </body>
+</html>

@@ -3,17 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>微秀后台管理系统</title>
-	<link rel="stylesheet" type="text/css" href="css/common.css?t=1415957827"/>
+	<link rel="stylesheet" type="text/css" href="css/common.css?t=1416237881"/>
 </head>
 <body>
-	<script type="text/javascript" src="js/sea.js?t=1415957827" charset="utf-8"></script>
-	<script type="text/javascript" src="js/sea-css.js?t=1415957827" charset="utf-8"></script>
+	<script type="text/javascript" src="js/sea.js?t=1416237881" charset="utf-8"></script>
+	<script type="text/javascript" src="js/sea-css.js?t=1416237881" charset="utf-8"></script>
 	<script type="text/javascript">
 		seajs.config({
 			charset: 'utf-8',
 			timeout: 20000,
 			map:[
-				[ /^(.*\.(js|css))(.*)$/i, '$1?t=1415957827' ],
+				[ /^(.*\.(js|css))(.*)$/i, '$1?t=1416237881' ],
 			]
 		});
 		seajs.use(['ui/indexPage','ui/dialog','lib/global'],function(indexPage,dialog,$){
@@ -40,12 +40,12 @@
 				},
 				menu:{
 					'系统管理':[
-						{name:'帐号管理',url:'http://wx.hongbeibang.com/backstage/view/user/index.html'},
-						{name:'密码管理',url:'http://wx.hongbeibang.com/backstage/view/password/index.html'}
+						{name:'帐号管理',url:'/view/user/index.html'},
+						{name:'密码管理',url:'/view/password/index.html'}
 					],
-					'社区管理':[
-						{name:'帐号管理',url:'http://wx.hongbeibang.com/backstage/view/user/index.html'},
-						{name:'密码管理',url:'http://wx.hongbeibang.com/backstage/view/password/index.html'}
+					'文章管理':[
+						{name:'模板管理',url:'/view/template/index.html'},
+						{name:'文章管理',url:'/view/article/index.html'}
 					],
 				}
 			});
