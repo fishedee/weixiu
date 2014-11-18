@@ -40,7 +40,6 @@
 								subPage.close();
 							});
 						}else{
-							console.log(data);
 							data = $.extend({articleId:articleId,type:0},data);
 							$.post('/articlecontent/add',data,function(data){
 								data = $.JSON.parse(data);
