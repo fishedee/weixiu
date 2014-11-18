@@ -7,6 +7,8 @@
 <body class="definewidth m10">
 	<div id="container">
 	</div>
+	<div id="container2">
+	</div>
 	<script type="text/javascript" src="/js/sea.js?t=1416313484" charset="utf-8"></script>
 	<script type="text/javascript" src="/js/sea-css.js?t=1416313484" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -18,24 +20,17 @@
 			]
 		});
 		seajs.use(['lib/global','ui/input','ui/dialog'],function($,input,dialog){
-			var userId = $.location.getQueryArgv('userId');
-			$.get('/user/get',{userId:userId},function(data){
-				data = $.JSON.parse(data);
-				if( data.code != 0 ){
-					dialog.message(data.msg);
-					return;
-				}
+			function go(templateMap){
 				input.verticalInput({
 					id:'container',
 					field:[
-						{id:'name',type:'text',name:'姓名'},
-						{id:'type',type:'enum',name:'类型',map:{'0':'管理员','1':'普通会员'}},
+						{id:'title',type:'text',name:'标题'},
+						{id:'templateId',type:'enum',name:'模板',map:templateMap},
+						{id:'remark',type:'text',name:'备注'},
 						{id:'state',type:'enum',name:'状态',map:{'0':'可用','1':'不可用'}},
 					],
-					value:data.data,
 					submit:function(data){
-						data = $.extend({userId:userId},data);
-						$.post('/user/mod',data,function(data){
+						$.post('/article/add',data,function(data){
 							data = $.JSON.parse(data);
 							if( data.code != 0 ){
 								dialog.message(data.msg);
@@ -48,6 +43,19 @@
 						location.href = 'index.html';
 					}
 				});
+			}
+			$.get('/template/search',{state:0},function(data){
+				data = $.JSON.parse(data);
+				if( data.code != 0 ){
+					dialog.message(data.msg);
+					return;
+				}
+				var map = {};
+				for( var i in data.data.data ){
+					var item = data.data.data[i];
+					map[item.templateId] = item.name;
+				}
+				go(map);
 			});
 		});
 	</script>

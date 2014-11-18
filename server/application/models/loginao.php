@@ -15,7 +15,7 @@ class LoginAo extends CI_Model {
 			if( $result["code"] != 0 )
 				return $result;
 				
-			if( $result["data"]->state != $this->userDb->STATE_VALID )
+			if( $result["data"]['state'] != $this->userDb->STATE_VALID )
 				return array(
 					"code"=>1,
 					"msg"=>"该用户不可用",
@@ -51,7 +51,7 @@ class LoginAo extends CI_Model {
 		if( $result["code"] != 0 )
 			return $result;
 		
-		if( $result["data"]->state != $this->userDb->STATE_VALID )
+		if( $result["data"]['state'] != $this->userDb->STATE_VALID )
 			return array(
 				"code"=>1,
 				"msg"=>"该用户不可用",
@@ -60,7 +60,7 @@ class LoginAo extends CI_Model {
 			
 		$user = $result["data"];
 		
-		$this->session->set_userdata('userId',$user->userId);
+		$this->session->set_userdata('userId',$user['userId']);
 		return array(
 				"code"=>0,
 				"msg"=>"",

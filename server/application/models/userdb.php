@@ -20,6 +20,14 @@ class UserDb extends CI_Model {
 			else if( $key == "type" || $key == "state" )
 				$this->db->where($key,$value);
 		}
+		$count = $this->db->count_all_results($this->tableName);
+		
+		foreach( $where as $key=>$value ){
+			if( $key == "name" )
+				$this->db->like($key,$value);
+			else if( $key == "type" || $key == "state" )
+				$this->db->where($key,$value);
+		}
 		
 		$this->db->order_by('createTime','desc');
 		
@@ -30,13 +38,16 @@ class UserDb extends CI_Model {
 		return array(
 			"code"=>0,
 			"msg"=>"",
-			"data"=>$query->result()
+			"data"=>array(
+				'count'=>$count,
+				'data'=>$query->result_array()
+			)
 		);
 	}
 	
 	public function get($userId){
 		$this->db->where("userId",$userId);
-		$query = $this->db->get($this->tableName)->result();
+		$query = $this->db->get($this->tableName)->result_array();
 		if( count($query) == 0 )
 			return array(
 				"code"=>1,
@@ -47,23 +58,6 @@ class UserDb extends CI_Model {
 			"code"=>0,
 			"msg"=>"",
 			"data"=>$query[0]
-		);
-	}
-	
-	public function count($where)
-	{
-		foreach( $where as $key=>$value ){
-			if( $key == "name" )
-				$this->db->like($key,$value);
-			else if( $key == "type" || $key == "state" )
-				$this->db->where($key,$value);
-		}
-		
-		$query = $this->db->count_all_results($this->tableName);
-		return array(
-			"code"=>0,
-			"msg"=>"",
-			"data"=>$query
 		);
 	}
 	
@@ -120,7 +114,7 @@ class UserDb extends CI_Model {
 		$this->db->where("name",$name);
 		$this->db->where("password",$password);
 		$this->db->where("state",0);
-		$query = $this->db->get($this->tableName)->result();
+		$query = $this->db->get($this->tableName)->result_array();
 		if( count($query) == 0 )
 			return array(
 				"code"=>1,
@@ -137,7 +131,7 @@ class UserDb extends CI_Model {
 	public function getByName($name)
 	{
 		$this->db->where("name",$name);
-		$query = $this->db->get($this->tableName)->result();
+		$query = $this->db->get($this->tableName)->result_array();
 		return array(
 			"code"=>0,
 			"msg"=>"",

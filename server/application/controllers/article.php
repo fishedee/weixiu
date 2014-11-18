@@ -1,26 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Account extends CI_Controller {
+class Article extends CI_Controller {
 
 	public function __construct()
     {
         parent::__construct();
-		$this->load->model('accountAo','accountAo');
+		$this->load->model('articleDb','articleDb');
 		$this->load->model('loginAo','loginAo');
 		$this->load->library('argv','argv');
     }
+	
 	public function search()
 	{
-		//检查登录态
+		//检查权限
 		$result = $this->loginAo->islogin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数		
-		$result = $this->argv->getOptionInput(array('name','remark','type','state','categoryId','money'));
+		$result = $this->argv->getOptionInput(array('title','templateId','state'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return;
@@ -35,68 +35,50 @@ class Account extends CI_Controller {
 		$dataLimit = $result["data"];
 			
 		//执行业务逻辑
-		$dataWhere["userId"] = $userId;
-		$data = $this->accountAo->search($dataWhere,$dataLimit);
+		$data = $this->articleDb->search($dataWhere,$dataLimit);
 		if( $data["code"] != 0 ){
 			$this->load->view('json',$data);
 			return;
 		}
 		
-		$dataCount = $this->accountAo->count($dataWhere);
-		if( $dataCount["code"] != 0 ){
-			$this->load->view('json',$dataCount);
-			return;
-		}
-		
-		$result = array(
-			"code"=>0,
-			"msg"=>"",
-			"data"=>array(
-				"count"=>$dataCount["data"],
-				"data"=>$data["data"]
-			)
-		);
-		$this->load->view('json',$result);
+		$this->load->view('json',$data);
 	}
 	
 	public function get()
 	{
-		//检查登录态
+		//检查权限
 		$result = $this->loginAo->islogin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数
-		$result = $this->argv->getRequireInput(array('accountId'));
+		$result = $this->argv->getRequireInput(array('articleId'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$accountId = $result["data"]["accountId"];
+		$articleId = $result["data"]["articleId"];
 		
 		//执行业务逻辑
-		$data = $this->accountAo->getByIdAndUser(
-			$accountId,
-			$userId
+		$data = $this->articleDb->get(
+			$articleId
 		);
 		$this->load->view('json',$data);
 	}
 	
 	public function add()
 	{
-		//检查登录态
+		//检查权限
 		$result = $this->loginAo->islogin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数
-		$result = $this->argv->postRequireInput(array('name','remark','type','state','categoryId','money'));
+		$result = $this->argv->postRequireInput(array('title','templateId','remark','state'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
@@ -104,8 +86,7 @@ class Account extends CI_Controller {
 		$data = $result["data"];
 		
 		//执行业务逻辑
-		$data["userId"] = $userId;
-		$data = $this->accountAo->add(
+		$data = $this->articleDb->add(
 			$data
 		);
 		$this->load->view('json',$data);
@@ -113,23 +94,22 @@ class Account extends CI_Controller {
 	
 	public function mod()
 	{
-		//检查登录态
+		//检查权限
 		$result = $this->loginAo->islogin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数
-		$result = $this->argv->postRequireInput(array('accountId'));
+		$result = $this->argv->postRequireInput(array('articleId'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$accountId = $result["data"]["accountId"];
+		$articleId = $result["data"]["articleId"];
 		
-		$result = $this->argv->postRequireInput(array('name','remark','type','state','categoryId','money'));
+		$result = $this->argv->postRequireInput(array('title','templateId','remark','state'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
@@ -137,9 +117,8 @@ class Account extends CI_Controller {
 		$data = $result["data"];
 		
 		//执行业务逻辑
-		$data = $this->accountAo->modByIdAndUser(
-			$accountId,
-			$userId,
+		$data = $this->articleDb->mod(
+			$articleId,
 			$data
 		);
 		$this->load->view('json',$data);

@@ -7,47 +7,42 @@
 <body class="definewidth m10">
 	<div id="container">
 	</div>
-	<script type="text/javascript" src="/js/sea.js?t=1416313484" charset="utf-8"></script>
-	<script type="text/javascript" src="/js/sea-css.js?t=1416313484" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea.js?t=<?php echo time();?>" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea-css.js?t=<?php echo time();?>" charset="utf-8"></script>
 	<script type="text/javascript">
 		seajs.config({
 			charset: 'utf-8',
 			timeout: 20000,
 			map:[
-				[ /^(.*\.(js|css))(.*)$/i, '$1?t=1416313484' ],
+				[ /^(.*\.(js|css))(.*)$/i, '$1?t=<?php echo time();?>' ],
 			]
 		});
 		seajs.use(['lib/global','ui/query','ui/dialog'],function($,query,dialog){
 			query.simpleQuery({
 				id:'container',
-				url:'/user/search',
+				url:'/template/search',
 				column:[
-					{id:'userId',type:'text',name:'用户ID'},
-					{id:'name',type:'text',name:'姓名'},
-					{id:'type',type:'enum',name:'类型',map:{'0':'管理员','1':'普通会员'}},
+					{id:'templateId',type:'text',name:'模板ID'},
+					{id:'name',type:'text',name:'名字'},
+					{id:'url',type:'text',name:'链接'},
+					{id:'remark',type:'text',name:'备注'},
 					{id:'state',type:'enum',name:'状态',map:{'0':'可用','1':'不可用'}},
 					{id:'createTime',type:'text',name:'创建时间'},
 					{id:'modifyTime',type:'text',name:'修改时间'},
 				],
-				queryColumn:['name','type','state'],
+				queryColumn:['name','state'],
 				operate:[
 				{
 					name:'编辑',
 					click:function(data){
-						location.href = 'view.html?userId='+data.userId;
-					}
-				},
-				{
-					name:'修改密码',
-					click:function(data){
-						location.href = 'modPass.html?userId='+data.userId;
+						location.href = 'view.html?templateId='+data.templateId;
 					}
 				}],
 				button:[
 				{
-					name:'添加用户',
+					name:'添加模板',
 					click:function(){
-						location.href = 'add.html';
+						location.href = 'view.html';
 					}
 				}
 				],

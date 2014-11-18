@@ -19,7 +19,7 @@ class User extends CI_Controller {
 		if( $result["code"] != 0 )
 			return $result;
 			
-		if( $result["data"]->type != $this->userDb->TYPE_ADMIN )
+		if( $result["data"]['type'] != $this->userDb->TYPE_ADMIN )
 			return array(
 				"code"=>1,
 				"msg"=>"你没有权限执行此操作",
@@ -64,21 +64,7 @@ class User extends CI_Controller {
 			return;
 		}
 		
-		$dataCount = $this->userDb->count($dataWhere);
-		if( $dataCount["code"] != 0 ){
-			$this->load->view('json',$dataCount);
-			return;
-		}
-		
-		$result = array(
-			"code"=>0,
-			"msg"=>"",
-			"data"=>array(
-				"count"=>$dataCount["data"],
-				"data"=>$data["data"]
-			)
-		);
-		$this->load->view('json',$result);
+		$this->load->view('json',$data);
 	}
 	
 	public function get()

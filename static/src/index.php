@@ -40,12 +40,12 @@
 				},
 				menu:{
 					'系统管理':[
-						{name:'帐号管理',url:'/view/user/index.html'},
-						{name:'密码管理',url:'/view/password/index.html'}
+						{name:'帐号管理',url:'view/user/index.html'},
+						{name:'密码管理',url:'view/password/index.html'}
 					],
 					'文章管理':[
-						{name:'模板管理',url:'/view/template/index.html'},
-						{name:'文章管理',url:'/view/article/index.html'}
+						{name:'模板管理',url:'view/template/index.html'},
+						{name:'文章管理',url:'view/article/index.html'}
 					],
 				}
 			});

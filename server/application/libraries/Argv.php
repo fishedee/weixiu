@@ -45,6 +45,23 @@ class CI_Argv{
 		);
 	}
 	
+	public function postDefaultInput( $input ,$default)
+	{
+		$result = array();
+		foreach( $input as $key=>$value ){
+			if( $this->CI->input->post($value,true) === false ){
+				$result[$value] = $default;
+			}else{
+				$result[$value] = $this->CI->input->post($value,true);
+			}
+		}
+		return array(
+			"code"=>0,
+			"msg"=>"",
+			"data"=>$result
+		);
+	}
+	
 	public function getRequireInput( $input )
 	{
 		$result = array();
@@ -81,5 +98,7 @@ class CI_Argv{
 			"data"=>$result
 		);
 	}
+	
+	
 }
 ?>

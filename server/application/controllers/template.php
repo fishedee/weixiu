@@ -1,33 +1,56 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Template extends CI_Controller {
 
 	public function __construct()
     {
         parent::__construct();
-		$this->load->model('categoryDb','categoryDb');
+		$this->load->model('templateDb','templateDb');
 		$this->load->model('loginAo','loginAo');
 		$this->load->library('argv','argv');
     }
+	private function _checkAdmin(){
+		$result = $this->loginAo->islogin();
+		if( $result["code"] != 0 )
+			return $result;
+		
+		$userId = $result["data"];
+		$result = $this->userDb->get($userId);
+		if( $result["code"] != 0 )
+			return $result;
+			
+		if( $result["data"]['type'] != $this->userDb->TYPE_ADMIN )
+			return array(
+				"code"=>1,
+				"msg"=>"你没有权限执行此操作",
+				"data"=>""
+			);
+		
+		return array(
+			"code"=>0,
+			"msg"=>"",
+			"data"=>$userId
+		);
+	}
+	
 	public function search()
 	{
-		//检查登录态
-		$result = $this->loginAo->islogin();
+		//检查权限
+		$result = $this->_checkAdmin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数		
-		$result = $this->argv->getOptionInput(array('name','remark','state'));
+		$result = $this->argv->getOptionInput(array('name','state'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return;
 		}
 		$dataWhere = $result["data"];
 		
-		$result = $this->argv->getRequireInput(array('pageIndex','pageSize'));
+		$result = $this->argv->getOptionInput(array('pageIndex','pageSize'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return;
@@ -35,86 +58,50 @@ class Category extends CI_Controller {
 		$dataLimit = $result["data"];
 			
 		//执行业务逻辑
-		$dataWhere["userId"] = $userId;
-		$data = $this->categoryDb->search($dataWhere,$dataLimit);
+		$data = $this->templateDb->search($dataWhere,$dataLimit);
 		if( $data["code"] != 0 ){
 			$this->load->view('json',$data);
 			return;
 		}
 		
-		$dataCount = $this->categoryDb->count($dataWhere);
-		if( $dataCount["code"] != 0 ){
-			$this->load->view('json',$dataCount);
-			return;
-		}
-		
-		$result = array(
-			"code"=>0,
-			"msg"=>"",
-			"data"=>array(
-				"count"=>$dataCount["data"],
-				"data"=>$data["data"]
-			)
-		);
-		$this->load->view('json',$result);
-	}
-	
-	public function getAll()
-	{
-		//检查登录态
-		$result = $this->loginAo->islogin();
-		if( $result["code"] != 0 ){
-			$this->load->view('json',$result);
-			return $result;
-		}
-		$userId = $result["data"];
-		
-		//执行业务逻辑
-		$data = $this->categoryDb->getValidByUser(
-			$userId
-		);
 		$this->load->view('json',$data);
 	}
 	
-	
 	public function get()
 	{
-		//检查登录态
-		$result = $this->loginAo->islogin();
+		//检查权限
+		$result = $this->_checkAdmin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数
-		$result = $this->argv->getRequireInput(array('categoryId'));
+		$result = $this->argv->getRequireInput(array('templateId'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$categoryId = $result["data"]["categoryId"];
+		$templateId = $result["data"]["templateId"];
 		
 		//执行业务逻辑
-		$data = $this->categoryDb->getByIdAndUser(
-			$categoryId,
-			$userId
+		$data = $this->templateDb->get(
+			$templateId
 		);
 		$this->load->view('json',$data);
 	}
 	
 	public function add()
 	{
-		//检查登录态
-		$result = $this->loginAo->islogin();
+		//检查权限
+		$result = $this->_checkAdmin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数
-		$result = $this->argv->postRequireInput(array('name','remark','state'));
+		$result = $this->argv->postRequireInput(array('name','url','remark','state'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
@@ -122,8 +109,7 @@ class Category extends CI_Controller {
 		$data = $result["data"];
 		
 		//执行业务逻辑
-		$data["userId"] = $userId;
-		$data = $this->categoryDb->add(
+		$data = $this->templateDb->add(
 			$data
 		);
 		$this->load->view('json',$data);
@@ -131,23 +117,22 @@ class Category extends CI_Controller {
 	
 	public function mod()
 	{
-		//检查登录态
-		$result = $this->loginAo->islogin();
+		//检查权限
+		$result = $this->_checkAdmin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$userId = $result["data"];
 		
 		//检查输入参数
-		$result = $this->argv->postRequireInput(array('categoryId'));
+		$result = $this->argv->postRequireInput(array('templateId'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
-		$categoryId = $result["data"]["categoryId"];
+		$templateId = $result["data"]["templateId"];
 		
-		$result = $this->argv->postRequireInput(array('name','remark','state'));
+		$result = $this->argv->postRequireInput(array('name','url','remark','state'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
@@ -155,9 +140,8 @@ class Category extends CI_Controller {
 		$data = $result["data"];
 		
 		//执行业务逻辑
-		$data = $this->categoryDb->modByIdAndUser(
-			$categoryId,
-			$userId,
+		$data = $this->templateDb->mod(
+			$templateId,
 			$data
 		);
 		$this->load->view('json',$data);

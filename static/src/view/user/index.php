@@ -29,7 +29,7 @@
 					{id:'createTime',type:'text',name:'创建时间'},
 					{id:'modifyTime',type:'text',name:'修改时间'},
 				],
-				params:['name','type','state'],
+				queryColumn:['name','type','state'],
 				operate:[
 				{
 					name:'编辑',
