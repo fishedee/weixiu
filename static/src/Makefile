@@ -1,5 +1,5 @@
 OUT = ../public
-COPY_FILE = view css js font img
+COPY_FILE = view css js font img card music
 GENERATE_FILE = $(OUT)/view
 .PHONY:all copyfile generatefile $(COPY_FILE)
 all:

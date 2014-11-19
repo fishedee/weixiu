@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://weshow.iweshow.com.cn/weshow/spage/1411/19/21/79feefa9d34a.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript">
+		var share_value = 'XjlRYVZRAk5THlAqVwhUZAFnUitVM1FjVmdSHFBSXWxdF1NhAhFRGlFqB3NQIQA0UWNTNwE3A3EAH1VhVVo=';
+		var forward_value = 'UTlQZgQMWksJTgd7V1wGYQtuVn4EPwZsUTgFGFNUCWcITQM3UU1aTFloAXMDJgtoUmMEMQFqAigLTAViAQs=';
+	</script>
+
+    
+        <title>
+            我的微秀
+        </title>
+        
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="target-densitydpi=320,width=640,min-height:900px;user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">	
+		<meta name="copyright" content="©微信公众号&#39;卡妞微秀&#39;，版权所有，抄袭必究！">
+		
+        <link rel="stylesheet" type="text/css" href="/card/1064/index_files/weshow.min.css">
+        <link media="screen and (min-width:1000px)" rel="stylesheet" type="text/css" href="/card/1064/index_files/pcstyle1.css">
+		<script src="/card/1064/index_files/jquery-1.11.1.min.js"></script>
+				
+		<script type="text/javascript">
+
+		if(typeof(AN)==="undefined"){var AN={}}AN.instances={symbols:[],controllers:[]};AN.apiVersion=1;AN.Controller=function(){return{currentScene:false,userData:{},setConfig:function(a){AN.instances.controllers.push(this);this.events=a.events;this.prefix=a.cssPrefix;this.projectActions=a.projectActions;this.basePath=a.basePath?a.basePath:"";this.olElement=document.querySelector("#"+a.parentId+" ol");var d=this.olElement.children;this.useOrmma=a.ormma;this.scenes=[];this.scenesById={};this.sceneByName={};var g;for(var e=0;e<a.scenes.length;e++){g=a.scenes[e];g.element=d[e];g.timelinesById={};g.timelinesByName={};for(var c=0;c<g.timelines.length;c++){g.timelinesById[g.timelines[c].id]=g.timelines[c];g.timelinesByName[g.timelines[c].name]=g.timelines[c]}this.scenesById[g.id]=g;this.scenes.push(g);if(g.name){this.sceneByName[g.name]=g}}this.setupListeners();this.startSceneByName=this.goToSceneByName;this.startSceneById=this.goToSceneById;this.startSceneByID=this.startSceneById;this.symbolInstancesByHtmlId={};this.symbolInstancesById={};this.symbols=[];var h,b,f;for(var e=0;e<a.symbols.length;e++){h=a.symbols[e];this.symbolInstancesById[h.id]=[];b=this.olElement.querySelectorAll(".an-symbol-container-"+h.id);for(var c=0;c<b.length;c++){f=new AN.Symbol();f.setConfig(b[c],h,this);this.symbolInstancesByHtmlId[b[c].id]=f;this.symbolInstancesById[h.id].push(f);this.symbols.push(f)}}this.fireAction(this.projectActions,"init");this.goToScene(this.scenes[0])},setupListeners:function(){var l=this;this.browser="unknown";if(document.body.style.MozAnimationName!==undefined){this.browser="moz"}function h(j){var i;if(l.browser==="moz"){i=j.target;while(i=i.parentNode){if(i===l.currentScene.element){l.onAnimationEnd();return}}}else{l.onAnimationEnd()}}this.olElement.addEventListener("webkitAnimationEnd",h,false);this.olElement.addEventListener("animationend",h,false);function c(i){i.element.addEventListener("mousemove",function(j){i.mousemoveAction.call(l.userData,l,j)},false)}var g;for(var e=0;e<this.scenes.length;e++){g=this.scenes[e];if(g.mousemoveAction){c(g)}}function a(m,j,i){m.addEventListener(j,function(n){i.call(l.userData,l,n)},false)}var f,b,k;for(var e=0;e<this.events.length;e++){b=this.events[e];k=b.type;f=document.getElementById(b.id);for(var d=0;d<k.length;d++){a(f,k[d],b.handler)}}},onAnimationEnd:function(){this.runningAnimationCount--;if(this.runningAnimationCount===0){this.onAllAnimationEnd()}},onAllAnimationEnd:function(){var a=this.currentScene.currentTimeline.endWaitTime;if(a){var b=this;this.sceneTimeout=setTimeout(function(){b.onSceneFinish()},a*1000)}else{this.onSceneFinish()}},forceRefresh:function(a){this.forceRefreshValue=a.element.offsetHeight},fireAction:function(b,a){if(b&&b[a]){b[a].call(this.userData,this)}},getSymbolByHtmlId:function(a){return this.symbolInstancesByHtmlId[a]},getSymbolByInstanceId:function(b){var a=this.olElement.querySelector(".an-symbol-container.an-symbol-"+b);return this.getSymbolByHtmlId(a.id)},getSymbols:function(){return this.symbols},getSymbolsBySymbolMasterId:function(a){return this.symbolInstancesById[a]},getUserData:function(){return this.userData},getTimelineByIndex:function(a){return this.currentScene.timelines[a]},getTimelineById:function(a){return this.currentScene.timelinesById[a]},getTimelineByName:function(a){return this.currentScene.timelinesByName[a]},getCurrentTimeline:function(){return this.currentScene.currentTimeline},getCurrentScene:function(){return this.currentScene},getSceneByIndex:function(a){return this.scenes[a]},getSceneById:function(a){return this.scenesById[a]},getSceneByName:function(a){return this.sceneByName[a]},goToNextTimeline:function(){var b=this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);var a=Math.min(b+1,this.currentScene.timelines.length-1);if(a===b){return}this.goToTimelineByIndex(a)},goToPreviousTimeline:function(){var b=this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);var a=Math.max(b-1,0);if(b===a){return}this.goToTimelineByIndex(a)},goToTimelineById:function(a){this.goToScene(this.currentScene,this.currentScene.timelinesById[a])},goToTimelineByName:function(a){this.goToScene(this.currentScene,this.currentScene.timelinesByName[a])},goToTimelineByIndex:function(a){this.goToScene(this.currentScene,this.currentScene.timelines[a])},goToTimeline:function(a){this.goToScene(this.currentScene,a)},goToNextScene:function(){var b=this.scenes.indexOf(this.currentScene);var a=Math.min(b+1,this.scenes.length-1);if(b===a){return}this.goToSceneByIndex(a)},goToPreviousScene:function(){var a=this.scenes.indexOf(this.currentScene);var b=Math.max(a-1,0);if(a===b){return}this.goToSceneByIndex(b)},goToSceneByIndex:function(a){this.goToScene(this.scenes[a])},goToSceneByName:function(a){this.goToScene(this.sceneByName[a])},goToSceneById:function(a,b){var c=this.scenesById[a];this.goToScene(c,c.timelinesById[b])},goToScene:function(g,f){var d=g;var e=this.currentScene;var a=f;var c=e?e.currentTimeline:false;if(a===undefined){a=d.timelines[0]}var b=false;if(c===a&&e===d){b=true}else{if(e){e.element.setAttribute("class","")}}this.fireAction(c,"exitAction");clearTimeout(this.sceneTimeout);if(e!==d){this.fireAction(e,"exitAction");this.fireAction(d,"initAction")}this.fireAction(a,"initAction");this.runningAnimationCount=a.animationCount;this.currentScene=d;d.currentTimeline=a;var h="t-"+a.id;if(b||this.browser==="moz"){d.element.setAttribute("class","run restart "+h);this.forceRefresh(d)}d.element.setAttribute("class","run "+h);if(!b&&this.useOrmma){this.ormmaNextScene(d)}this.fireAction(a,"startAction");if(a.animationCount===0){this.onAllAnimationEnd()}},replayScene:function(){console.warn("replayScene is deprecated. Use restartScene instead.");this.restartScene()},restartScene:function(){this.goToScene(this.currentScene)},restartTimeline:function(){this.goToScene(this.currentScene,this.currentScene.currentTimeline)},onSceneFinish:function(){this.fireAction(this.currentScene.currentTimeline,"endAction")},goToURL:function(a){document.location.href=a},getElementById:function(a){return document.getElementById(this.getElementIdById(a))},getElementIdById:function(a){return this.prefix+a},getUrlForLocalAsset:function(b){var a="http://res.iweshow.com.cn/weshow/1064/"+b;if(this.basePath){a=this.basePath+"/"+a}return a},ormmaNextScene:function(c){var a=ormma.getState();if(c.dimensions.expanded){var i=ormma.getMaxSize();if(a!=="expanded"){ormma.expand({x:0,y:0,width:i.width,height:i.height})}var b="";var d=c.element.offsetHeight;var g=c.element.offsetWidth;var e=(i.height-d)/2;var h=(i.width-g)/2;b+=" translate3d("+Math.round(h)+"px,"+Math.round(e)+"px,0)";if(c.dimensions.fit){var f=Math.min(i.width/g,i.height/d);b+=" scale3d("+f+","+f+",1)"}c.element.style.webkitTransform=b}else{if(a==="expanded"){ormma.close()}ormma.resize(c.dimensions.width,c.dimensions.height)}}}};window.addEventListener('load',function(){var configData={parentId:'pkmAXFZB2-an-anim',cssPrefix:'pkmAXFZB2-',ormma:false,mraid:false,layout:{"type":"absolute","width":640,"height":561},scenes:[{id:0,dimensions:{height:100,width:100,expanded:false,fit:false},timelines:[{id:"0",name:'Timeline 1',animationCount:2,duration:Infinity,lastKeyframeTime:6.707},{id:"jTbv0Z",name:'Timeline 1 Copy',animationCount:0,duration:NaN,lastKeyframeTime:0}]}],symbols:[],projectActions:{},events:[],externalResources:[]};setTimeout(function(){var controller=new AN.Controller;controller.setConfig(configData);},0);},false);
+		</script>
+		
+		<script>
+			var leafNum = 10;
+			var kindNum = 2;
+			var kindurl = new Array("http://res.iweshow.com.cn/weshow/1064/1064_p1.png","http://res.iweshow.com.cn/weshow/1064/1064_p2.png");
+		</script>
+		<script src="/card/1064/index_files/fleavesup.js"></script>
+		<link rel="stylesheet" href="/card/1064/index_files/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+		
+        <style>
+             body{-webkit-touch-callout: none; -webkit-text-size-adjust: none;}
+			.page-bizinfo{position:absolute; padding:0; margin:0; top:105px; text-align:left; width:640px;}
+			.page-button {position:absolute; padding:0; margin:0; top:581px; width:640px;}
+			.page-content{background:-webkit-linear-gradient(#E1F0F5,#E1F0F5); top:561px; min-height:650px;_height:650px;width:640px;	}
+			
+			#activity-detail .page-content .text p{padding:2px 36px 9px 33px; color:#467DAA;}
+			#activity-detail .page-content .text p img{ width:90%;}
+			.page-foot{ background:#E1F0F5 repeat-x center top;  margin:0 auto; min-height:27px;_height:27px; width:640px;	}			
+			#activity-detail .page-bizinfo .header #activity-name{padding:9px 40px 9px 40px;color:#2B3F46 }			
+			.activity-meta{display:inline-block;padding-left:38px;;padding-top:0px;padding-bottom:15px;color:#456570;font-size:24px;}
+			.klink{font-size:12px;text-decoration:none;color:#74aaf0}	
+
+			.text img{
+				-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+			}
+			
+							
+			#pkmAXFZB2-an-anim > ol {list-style:none; margin:0; padding:0;}
+			#pkmAXFZB2-an-anim > ol > li {margin:0; padding:0; display:none;}
+			#pkmAXFZB2-an-anim > ol > li.run {display:block;}
+			#pkmAXFZB2-an-anim .pkmAXFZB2-an-stage { overflow:hidden; margin:0; padding:0; }
+			#pkmAXFZB2-an-anim .pkmAXFZB2-an-stage div { position: absolute; }
+			.pkmAXFZB2-an-stage * {margin:0; padding:0; -webkit-font-smoothing: antialiased;}
+			#pkmAXFZB2-an-anim .pkmAXFZB2-an-stage img {position: absolute; top:0; left:0;}
+			#pkmAXFZB2-an-anim .AN-Scene-Description {display: none;}
+			#pkmAXFZB2-an-anim iframe {border: none; height:100%; width:100%}
+			#pkmAXFZB2-an-anim .pkmAXFZB2-an-stage { position: absolute; top:0; left:0; width: 100%; height:100%; }
+			#pkmAXFZB2-an-anim {height: 561px; width: 640px; position: relative;}
+			#pkmAXFZB2-an-anim {
+				background-color: rgba(255,255,255,1);
+				font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+				font-size: 12px;
+				line-height: 1.3;
+			}
+			#pkmAXFZB2-an-obj-1 {
+				-webkit-transform: translate3d(0px, 0px, 0px);
+				width: 640px;
+				height: 561px;
+				top:0; left:0;
+			}
+
+			#pkmAXFZB2-an-obj-2 {
+				-webkit-transform: translate3d(644px, -12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(87.8deg);
+				width: 332px;
+				height: 214px;
+				top:0; left:0;
+				-webkit-transform-origin: 1.81% 5.14%;
+				-webkit-animation-direction: alternate;
+				-webkit-animation-iteration-count: infinite;
+			}
+
+			@-webkit-keyframes ani-pkmAXFZB2-an-obj-2-0 {
+				0% {
+					-webkit-transform: translate3d(644px, -12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(99.5deg) scale3d(1, 1, 1);
+					opacity: 1;
+				}
+				100% {
+					-webkit-transform: translate3d(644px, -12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(109.19999999999999deg) scale3d(1.5, 1.5, 1);
+					opacity: 0.7;
+				}
+			}
+			.run.t-0 #pkmAXFZB2-an-obj-2 {    
+			  -webkit-animation-name: ani-pkmAXFZB2-an-obj-2-0;    
+			  -webkit-animation-duration: 3.9786s;    
+			  -webkit-animation-delay: 0s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pkmAXFZB2-an-obj-2 {
+				-webkit-transform: translate3d(644px, -12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(109.19999999999999deg) scale3d(1.5, 1.5, 1);
+				opacity: 0.7;
+
+			}
+			.restart.t-0 #pkmAXFZB2-an-obj-2 {
+				-webkit-transform: translate3d(644px, -12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(99.5deg) scale3d(1, 1, 1);
+				opacity: 1;
+
+			}
+			.restart #pkmAXFZB2-an-obj-2 {    
+			  -webkit-animation-name: none !important;    
+			}
+			#pkmAXFZB2-an-obj-3 {
+				-webkit-transform: translate3d(-31px, 238px, 0px);
+				width: 630px;
+				height: 360px;
+				top:0; left:0;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-direction: alternate;
+				-webkit-transform-origin: 37.3% 122.22%;
+			}
+
+			@-webkit-keyframes ani-pkmAXFZB2-an-obj-3-0 {
+				0% {
+					-webkit-transform: translate3d(-189px, 255px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(17.2deg);
+					-webkit-animation-timing-function:ease-in-out;
+				}
+				39.5101% {
+					-webkit-transform: translate3d(67px, 262px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-2.8deg);
+					-webkit-animation-timing-function:ease-in-out;
+				}
+				68.6901% {
+					-webkit-transform: translate3d(61px, 233px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-2.8deg);
+					-webkit-animation-timing-function:ease-in-out;
+				}
+				100% {
+					-webkit-transform: translate3d(353px, 252px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-24.1deg);
+					-webkit-animation-timing-function:ease-in-out;
+				}
+			}
+			.run.t-0 #pkmAXFZB2-an-obj-3 {    
+			  -webkit-animation-name: ani-pkmAXFZB2-an-obj-3-0;    
+			  -webkit-animation-duration: 6.7071s;    
+			  -webkit-animation-delay: 0s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pkmAXFZB2-an-obj-3 {
+				-webkit-transform: translate3d(353px, 252px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-24.1deg);
+				-webkit-animation-timing-function:ease-in-out;
+
+			}
+			.restart.t-0 #pkmAXFZB2-an-obj-3 {
+				-webkit-transform: translate3d(-189px, 255px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(17.2deg);
+				-webkit-animation-timing-function:ease-in-out;
+
+			}.t-jTbv0Z #pkmAXFZB2-an-obj-3 {
+				-webkit-transform: translate3d(-31px, 238px, 0px);
+
+			}
+			.restart #pkmAXFZB2-an-obj-3 {    
+			  -webkit-animation-name: none !important;    
+			}
+
+			/* ------------ SYMBOL CSS -------------- */
+
+
+		</style>
+		
+        <script>
+			var fxnum = 1;
+			var fxlink = 'spage/1411/19/21/79feefa9d34a.htm';
+		
+			var gSound = 'http://res.iweshow.com.cn/music/anjing.mp3';
+			var appId = '',
+				imgUrl = 'http://mmbiz.qpic.cn/mmbiz/xd4ic6ictILeFnIBa0H2QuKO6cEh19Ok1icoHBqkxBomzgCZodddOpdHgCbSVJibAqibXicxfTk0Kzr6gVRw0krVWGcg/0',
+				link = fxlink,
+				title = '卡妞微秀',
+				desc = '【我的微秀】http://weshow.iweshow.com.cn/weshow/spage/14';
+				// card tips;
+						
+		</script>
+		
+		<script src="/card/1064/index_files/new_wsmain.js"></script>
+		
+	</head>
+    
+    <body id="activity-detail">			
+		
+		<div style="width:0;height:0;" id="audiocontainer"><audio id="bgsound" loop="loop" autoplay="autoplay" src="/music/anjing.mp3"> <source src="/music/anjing.mp3"> </audio></div>		
+		
+		<div id="pkmAXFZB2-an-anim"><ol>
+
+		<li id="pkmAXFZB2-an-scene-0" class="run t-0">
+		<div class="pkmAXFZB2-an-stage">
+		<div id="pkmAXFZB2-an-obj-1"><div><img height="561" width="640" src="/card/1064/index_files/1064_1.jpg"></div></div>
+		<div id="pkmAXFZB2-an-obj-2"><div><img height="214" width="332" src="/card/1064/index_files/1064_3.png"></div></div>
+		<div id="pkmAXFZB2-an-obj-3"><div><img height="360" width="630" src="/card/1064/index_files/1064_2.png"></div></div>
+		</div>
+		</li>
+
+		</ol></div>
+		
+		<div id="container" style="left:0%;top:0%;">
+			<div id="leafContainer"><div style="top: -100px; left: 296px; -webkit-animation: fade 9.54646141314879s 4.36470021144487s, up 9.54646141314879s 4.36470021144487s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: clockwiseSpin 4.97867855336517s;"></div><div style="top: -100px; left: 249px; -webkit-animation: fade 7.15766242193058s 1.85236865305342s, up 7.15766242193058s 1.85236865305342s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: counterclockwiseSpinAndFlip 5.26050494983792s;"></div><div style="top: -100px; left: 156px; -webkit-animation: fade 8.13084853813052s 3.83897682186216s, up 8.13084853813052s 3.83897682186216s;"><img src="/card/1064/index_files/1064_p2.png" style="-webkit-animation: clockwiseSpin 7.77053748909384s;"></div><div style="top: -100px; left: 47px; -webkit-animation: fade 10.8046714882366s 2.28789355605841s, up 10.8046714882366s 2.28789355605841s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: clockwiseSpin 4.14389407262206s;"></div><div style="top: -100px; left: 355px; -webkit-animation: fade 7.62048870744184s 2.53647833247669s, up 7.62048870744184s 2.53647833247669s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: clockwiseSpin 6.15545158460736s;"></div><div style="top: -100px; left: 104px; -webkit-animation: fade 8.19650125456974s 0.571544161066413s, up 8.19650125456974s 0.571544161066413s;"><img src="/card/1064/index_files/1064_p2.png" style="-webkit-animation: counterclockwiseSpinAndFlip 4.19901049043983s;"></div><div style="top: -100px; left: 439px; -webkit-animation: fade 5.1612626761198s 4.40712524577975s, up 5.1612626761198s 4.40712524577975s;"><img src="/card/1064/index_files/1064_p2.png" style="-webkit-animation: clockwiseSpin 4.18715803511441s;"></div><div style="top: -100px; left: 226px; -webkit-animation: fade 6.15275996504352s 4.58308655186556s, up 6.15275996504352s 4.58308655186556s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: counterclockwiseSpinAndFlip 7.24327588733286s;"></div><div style="top: -100px; left: 402px; -webkit-animation: fade 6.84206675365567s 3.78700433531776s, up 6.84206675365567s 3.78700433531776s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: counterclockwiseSpinAndFlip 4.45088373217732s;"></div><div style="top: -100px; left: 482px; -webkit-animation: fade 10.4255387741141s 0.432440337026492s, up 10.4255387741141s 0.432440337026492s;"><img src="/card/1064/index_files/1064_p1.png" style="-webkit-animation: counterclockwiseSpinAndFlip 6.26913670636714s;"></div></div>
+		</div>
+		<script>		
+			leafinit();
+		</script>	
+		<div class="page-bizinfo">
+			<div class="header">
+				<h1 id="activity-name">
+					我的微秀
+				</h1> 
+				<p class="activity-info">
+					<span id="post-date" class="activity-meta no-extra" style="top:0%;">
+						2014-11-19 21:36:09
+					</span>
+				</p>
+			</div>				
+		</div>
+		<div class="page-button">	
+					<li><a id="modm" style="left:320px" class="super button green" onclick="goguanzhu();">点这里，自己做微秀</a></li>
+		
+		</div>						
+		<div class="page-content">
+		<br><br><br><br><br>
+			<div class="text">
+			</div>
+			
+			<script src="/card/1064/index_files/footgif.js"></script><div style="text-align:center;z-index:20000;" onclick="goguanzhu();"><img width="300px" src="/card/1064/index_files/kaniu.gif"></div>
+			<div style="text-align:center;z-index:2000;font-size:13pt;color:#467DAA;">	
+				<br>
+				<br>
+				<p>内容为发布者自行编辑，由其本人负责，与“卡妞微秀”公众号无关。</p>
+			</div>
+		</div>
+		<div class="page-foot">	</div>
+		
+		<div style="width:0;height:0;"></div>
+		<script src="/card/1064/index_files/footad.js"></script>
+		<script src="/js/card.js"></script>
+		<script>
+			fillData({
+				type:'normal',
+				titleTarget:'#activity-name',
+				timeTarget:'#post-date',
+				contentTarget:'.text',
+			});
+		</script>
+		
+	
+
+<div id="cardsound" style="position: fixed; right: 20px; top: 40px; z-index: 50000; visibility: visible;"><img id="sound_image" src="/card/1064/index_files/music_note_big.png"><div id="note_box" style="height:100px;width:44px;position:absolute;left:-20px;top:-80px"><span id="music_note_42" style="visibility: visible; position: absolute; width: 15px; height: 25px; top: 0px; -webkit-transform: rotate(334deg) scale(0.480243600253016, 0.480243600253016); -webkit-transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; left: 0px; opacity: 0; background-image: url(http://res.iweshow.com.cn/weshow/music_note_small.png);"></span><span id="music_note_43" style="visibility: visible; position: absolute; width: 15px; height: 25px; top: 0px; -webkit-transform: rotate(337deg) scale(0.78977532973513, 0.78977532973513); -webkit-transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; left: 0px; opacity: 0; background-image: url(http://res.iweshow.com.cn/weshow/music_note_small.png);"></span><span id="music_note_44" style="visibility: visible; position: absolute; width: 15px; height: 25px; top: 0px; -webkit-transform: rotate(255deg) scale(0.63588863844052, 0.63588863844052); -webkit-transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; left: 0px; opacity: 0; background-image: url(http://res.iweshow.com.cn/weshow/music_note_small.png);"></span><span id="music_note_45" style="visibility: visible; position: absolute; width: 15px; height: 25px; top: 0px; -webkit-transform: rotate(99deg) scale(0.749767018668354, 0.749767018668354); -webkit-transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; transition: top 2s ease-in, opacity 2s ease-in, left 2s ease-in; left: 0px; opacity: 0; background-image: url(http://res.iweshow.com.cn/weshow/music_note_small.png);"></span></div><div id="music_txt" style="color:white;position:absolute;left:-40px;top:30px;width:60px"></div></div></body></html>

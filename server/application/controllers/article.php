@@ -6,9 +6,37 @@ class Article extends CI_Controller {
     {
         parent::__construct();
 		$this->load->model('articleDb','articleDb');
+		$this->load->model('templateDb','templateDb');
 		$this->load->model('loginAo','loginAo');
 		$this->load->library('argv','argv');
     }
+	
+	public function go(){
+		//检查输入参数		
+		$result = $this->argv->getOptionInput(array('articleId'));
+		if( $result["code"] != 0 ){
+			$this->load->view('json',$result);
+			return;
+		}
+		$articleId = $result["data"]['articleId'];
+		
+		//业务逻辑
+		$result = $this->articleDb->get($articleId);
+		if( $result["code"] != 0 ){
+			$this->load->view('json',$result);
+			return;
+		}
+		$article = $result['data'];
+		
+		$result = $this->templateDb->get($article['templateId']);
+		if( $result["code"] != 0 ){
+			$this->load->view('json',$result);
+			return;
+		}
+		$templateUrl = $result['data']['url'];
+		
+		require_once(dirname(__FILE__).'/../../../static/public/'.$templateUrl);
+	}
 	
 	public function search()
 	{
@@ -47,11 +75,13 @@ class Article extends CI_Controller {
 	public function get()
 	{
 		//检查权限
+		/*
 		$result = $this->loginAo->islogin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
+		*/
 		
 		//检查输入参数
 		$result = $this->argv->getRequireInput(array('articleId'));

@@ -42,7 +42,7 @@
 					{
 						name:'原文链接',
 						click:function(data){
-							location.href = '404.html?articleId='+data.articleId;
+							window.open('/article/go?articleId='+data.articleId);
 						}
 					}],
 					button:[

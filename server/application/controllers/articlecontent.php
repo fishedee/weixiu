@@ -13,11 +13,13 @@ class ArticleContent extends CI_Controller {
 	public function search()
 	{
 		//检查权限
+		/*
 		$result = $this->loginAo->islogin();
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return $result;
 		}
+		*/
 		
 		//检查输入参数
 		$result = $this->argv->getOptionInput(array('articleId','state'));
@@ -27,7 +29,7 @@ class ArticleContent extends CI_Controller {
 		}
 		$dataWhere = $result["data"];
 		
-		$result = $this->argv->getRequireInput(array('pageIndex','pageSize'));
+		$result = $this->argv->getOptionInput(array('pageIndex','pageSize'));
 		if( $result["code"] != 0 ){
 			$this->load->view('json',$result);
 			return;
