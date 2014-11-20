@@ -26,6 +26,52 @@ class ArticleContentDb extends CI_Model {
 		);
 	}
 	
+	public function getByArticle($articleId){
+		$this->db->where("articleId",$articleId);
+		$this->db->where("state",0);
+		$query = $this->db->get($this->tableName)->result_array();
+		return array(
+			"code"=>0,
+			"msg"=>"",
+			"data"=>$query
+		);
+	}
+	
+	public function delByArticle($articleId){
+		$data = array();
+		$data['state'] = 1;
+		$data["modifyTime"] = date("Y-m-d H:i:s");
+		$this->db->update($this->tableName,$data,array("articleId"=>$articleId));
+		return array(
+			"code"=>0,
+			"msg"=>"",
+			"data"=>''
+		);
+	}
+	
+	public function addBatch($data){
+		if( count($data) == 0 ){
+			return array(
+				"code"=>0,
+				"msg"=>"",
+				"data"=>""
+			);
+		}
+		foreach( $data as $key=>$value ){
+			$data[$key]['state'] = 0;
+			$data[$key]["createTime"] = date("Y-m-d H:i:s");
+			$data[$key]["modifyTime"] = date("Y-m-d H:i:s");
+		}
+		foreach( $data as $key=>$value ){
+			$this->db->insert($this->tableName,$value);
+		}
+		return array(
+			"code"=>0,
+			"msg"=>"",
+			"data"=>""
+		);
+	}
+	
 	public function search($where,$limit)
 	{
 		foreach( $where as $key=>$value ){

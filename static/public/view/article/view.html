@@ -7,18 +7,21 @@
 <body class="definewidth m10">
 	<div id="container">
 	</div>
-	<script type="text/javascript" src="/js/sea.js?t=1416406835" charset="utf-8"></script>
-	<script type="text/javascript" src="/js/sea-css.js?t=1416406835" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/uedit/ueditor.config.js?t=1416498873" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/uedit/ueditor.all.min.js?t=1416498873" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea.js?t=1416498873" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/sea-css.js?t=1416498873" charset="utf-8"></script>
 	<script type="text/javascript">
 		seajs.config({
 			charset: 'utf-8',
 			timeout: 20000,
 			map:[
-				[ /^(.*\.(js|css))(.*)$/i, '$1?t=1416406835' ],
+				[ /^(.*\.(js|css))(.*)$/i, '$1?t=1416498873' ],
 			]
 		});
 		seajs.use(['lib/global','ui/input','ui/query','ui/dialog','ui/subPage'],function($,input,query,dialog,subPage){
 			var articleId = $.location.getQueryArgv('articleId');
+			/*
 			function goTable(){
 				$('#articleContent').empty();
 				query.simpleQuery({
@@ -107,13 +110,14 @@
 					],
 				});
 			}
+			*/
 			function goInput(value,templateMap){
 				input.verticalInput({
 					id:'container',
 					field:[
 						{id:'title',type:'text',name:'标题'},
 						{id:'templateId',type:'enum',name:'模板',map:templateMap},
-						{id:'content',type:'unknown',name:'内容',targetId:'articleContent'},
+						{id:'content',type:'simpleEditor',name:'内容'},
 						{id:'remark',type:'text',name:'备注'},
 						{id:'state',type:'enum',name:'状态',map:{'0':'可用','1':'不可用'}},
 					],
@@ -133,7 +137,6 @@
 						location.href = 'index.html';
 					}
 				});
-				goTable();
 			}
 			function go(templateMap){
 				$.get('/article/get',{articleId:articleId},function(data){

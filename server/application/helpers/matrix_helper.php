@@ -22,4 +22,11 @@ function matrix_add_column( $matrix ,$oldColumn,$map,$newColumn){
 	}
 	return $matrix;
 }
+//设置数组的某个字段
+function matrix_set_column( $matrix ,$column,$value2){
+	foreach( $matrix as $key=>$value ){
+		$matrix[$key][$column] = $value2;
+	}
+	return $matrix;
+}
 ?>

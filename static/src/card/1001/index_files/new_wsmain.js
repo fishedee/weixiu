@@ -46,7 +46,7 @@ function popup_note()
 	box = id("note_box");
 	
 	note = document.createElement("span");
-	note.style.cssText = "visibility:visible;position:absolute;background-image:url('http://res.iweshow.com.cn/weshow/music_note_small.png');width:15px;height:25px";
+	note.style.cssText = "visibility:visible;position:absolute;background-image:url('/img/music_note_small.png');width:15px;height:25px";
 	note.style.left = Math.random() * 20 + 20;
 	note.style.top = "75px";
 	this_node = "music_note_" + note_id;

@@ -5,6 +5,7 @@ class Article extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+		$this->load->model('articleAo','articleAo');
 		$this->load->model('articleDb','articleDb');
 		$this->load->model('templateDb','templateDb');
 		$this->load->model('loginAo','loginAo');
@@ -63,7 +64,7 @@ class Article extends CI_Controller {
 		$dataLimit = $result["data"];
 			
 		//执行业务逻辑
-		$data = $this->articleDb->search($dataWhere,$dataLimit);
+		$data = $this->articleAo->search($dataWhere,$dataLimit);
 		if( $data["code"] != 0 ){
 			$this->load->view('json',$data);
 			return;
@@ -92,10 +93,10 @@ class Article extends CI_Controller {
 		$articleId = $result["data"]["articleId"];
 		
 		//执行业务逻辑
-		$data = $this->articleDb->get(
+		$result = $this->articleAo->get(
 			$articleId
 		);
-		$this->load->view('json',$data);
+		$this->load->view('json',$result);
 	}
 	
 	public function add()
@@ -116,10 +117,10 @@ class Article extends CI_Controller {
 		$data = $result["data"];
 		
 		//执行业务逻辑
-		$data = $this->articleDb->add(
+		$result = $this->articleAo->add(
 			$data
 		);
-		$this->load->view('json',$data);
+		$this->load->view('json',$result);
 	}
 	
 	public function mod()
@@ -146,12 +147,19 @@ class Article extends CI_Controller {
 		}
 		$data = $result["data"];
 		
+		$result = $this->argv->postDefaultInput(array('content'),array());
+		if( $result["code"] != 0 ){
+			$this->load->view('json',$result);
+			return $result;
+		}
+		$data = array_merge($data,$result["data"]);
+		
 		//执行业务逻辑
-		$data = $this->articleDb->mod(
+		$result = $this->articleAo->mod(
 			$articleId,
 			$data
 		);
-		$this->load->view('json',$data);
+		$this->load->view('json',$result);
 	}
 }
 
