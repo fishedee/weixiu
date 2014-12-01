@@ -12,7 +12,7 @@ function switchsound()
 	if(au.paused)
 	{
 		au.play();
-		ai.src = "http://res.iweshow.com.cn/weshow/music_note_big.png";
+		ai.src = "/img/music_note_big.png";
 		pop_up_note_mode = true;
 		popup_note();
 		id("music_txt").innerHTML = "播放";
@@ -46,7 +46,7 @@ function popup_note()
 	box = id("note_box");
 	
 	note = document.createElement("span");
-	note.style.cssText = "visibility:visible;position:absolute;background-image:url('http://res.iweshow.com.cn/weshow/music_note_small.png');width:15px;height:25px";
+	note.style.cssText = "visibility:visible;position:absolute;background-image:url('/img/music_note_small.png');width:15px;height:25px";
 	note.style.left = Math.random() * 20 + 20;
 	note.style.top = "75px";
 	this_node = "music_note_" + note_id;
