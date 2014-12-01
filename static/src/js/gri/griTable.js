@@ -1,4 +1,4 @@
-define('gri/griTable',['lib/gloabl','../../css/gri/bootstrap.css','../../css/gri/style.css','../../css/gri/module.css','../../css/gri/reset.css','../../css/gri/form.css'],function(require, exports, module){
+define('gri/griTable',['lib/global','../../css/gri/bootstrap.css','../../css/gri/style.css','../../css/gri/module.css','../../css/gri/reset.css','../../css/gri/form.css'],function(require, exports, module){
 var $ = require('lib/global');
 var self = {};
 // Copyright 2012 Tencent Inc. All Rights Reserved.

@@ -1,6 +1,6 @@
 #!/bin/sh
-ADDRESS=/home/fish/Project/FishMoney/data/mysql/
-DATABASE=FishMoney
+ADDRESS=/home/fish/Project/weixiu/data/mysql/
+DATABASE=weixiu
 
 #add data
 DATE=`date "+%Y-%m-%d_%T"`

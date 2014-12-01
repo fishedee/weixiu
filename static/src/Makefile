@@ -5,10 +5,6 @@ GENERATE_FILE = $(OUT)/view
 all:
 	-rm $(OUT) -rf
 	mkdir $(OUT)
-	cp /home/fish/Project/FishStrap/css/* css/ -r
-	cp /home/fish/Project/FishStrap/js/* js/ -r
-	cp /home/fish/Project/FishStrap/font/* font/ -r
-	cp /home/fish/Project/FishStrap/img/* img/ -r
 	$(MAKE) copyfile
 	$(MAKE) generatefile
 generatefile:

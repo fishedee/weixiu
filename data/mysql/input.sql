@@ -1,5 +1,5 @@
 #创建数据库
-drop database weixiu;
+drop database if exists weixiu;
 create database weixiu;
 use weixiu;
 
@@ -56,22 +56,24 @@ insert into t_user(userId,name,password,type,state,createTime,modifyTime) values
 (10001,"fish",SHA1("123"),0,0,now(),now());
 
 insert into t_template(templateId,name,url,remark,state,createTime,modifyTime) values
-(10001,"模板1","/static/a.html","",0,now(),now()),
-(10002,"模板2","/static/a.html","",0,now(),now()),
-(10003,"模板3","/static/a.html","",0,now(),now()),
-(10004,"模板4","/static/a.html","",0,now(),now());
+(10001,"记录与青春有关的日子","/card/1001/index.html","",0,now(),now()),
+(10002,"男与女","/card/1064/index.html","",0,now(),now()),
+(10003,"夜幕降临","/card/1089/index.html","",0,now(),now()),
+(10004,"秋天铁轨","/card/1090/index.html","",0,now(),now()),
+(10005,"秋天朦脓","/card/1411/index.html","",0,now(),now());
 
 insert into t_article(articleId,templateId,title,remark,state,createTime,modifyTime) values
 (10001,10001,"文章1","",0,now(),now()),
 (10002,10002,"文章2","",0,now(),now()),
 (10003,10003,"文章3","",0,now(),now()),
-(10004,10004,"文章4","",0,now(),now());
+(10004,10004,"文章4","",0,now(),now()),
+(10005,10005,"文章5","",0,now(),now());
 
 insert into t_article_content(articleContentId,articleId,data,type,weight,state,createTime,modifyTime) values
 (10001,10001,"文章1",0,1,0,now(),now()),
 (10002,10001,"文章2",0,2,0,now(),now()),
-(10003,10002,"文章3",1,2,0,now(),now()),
-(10004,10002,"文章4",1,1,0,now(),now());
+(10003,10002,"文章3",0,2,0,now(),now()),
+(10004,10002,"文章4",0,1,0,now(),now());
 
 select * from t_user;
 select * from t_template;
