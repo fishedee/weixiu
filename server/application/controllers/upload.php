@@ -8,6 +8,38 @@ class Upload extends CI_Controller {
 		$this->load->library('argv','argv');
     }
 	
+	public function music()
+	{
+		$config = array();
+		$config['upload_path'] = dirname(__FILE__).'/../../../data/upload/';
+		$config['allowed_types'] = 'mp3|midi';
+		$config['max_size'] = 1024*1024*5;
+
+		$this->load->library('upload', $config);
+
+		if( ! $this->upload->do_upload('sound')){
+			$result = array(
+				'code' =>1,
+				'msg'=>$this->upload->display_errors(),
+				'data'=>''
+			);
+			$this->load->view('json', $result);
+			return;
+		}
+		
+		$data = $this->upload->data();
+		
+		$newFileName = md5(uniqid()).$data['file_ext'];
+		$newFileAddress = dirname(__FILE__).'/../../../data/upload/'.$newFileName;
+		rename($data['full_path'],$newFileAddress);
+		$result = array(
+			'code' =>0,
+			'msg'=>'',
+			'data'=>'/data/upload/'.$newFileName
+		);
+		$this->load->view('json', $result);
+	}
+	
 	public function img()
 	{
 		//检查输入参数

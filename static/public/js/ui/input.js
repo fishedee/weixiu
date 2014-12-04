@@ -83,6 +83,10 @@ define('ui/input',['lib/global','ui/editor','ui/dialog'], function(require, expo
 				}else if( field.type == 'simpleEditor'){
 					field.editorTargetId = $.uniqueNum();
 					contentDiv += '<div name="'+field.id+'" id="'+field.editorTargetId+'"/>';
+				}else if( field.type == 'file'){
+					field.fileTargetId = $.uniqueNum();
+					field.fileTargetTipId = $.uniqueNum();
+					contentDiv += '<div name="'+field.id+'"></div><input type="file" name="'+field.id+'" id="'+field.fileTargetId +'"/><span id="'+field.fileTargetTipId+'"></span>';
 				}else if( field.type == 'image'){
 					field.imageTargetId = $.uniqueNum();
 					contentDiv += '<img name="'+field.id+'" src=""/><input type="file" name="'+field.id+'" accept="image/*" id="'+field.imageTargetId +'"/>';
@@ -140,6 +144,30 @@ define('ui/input',['lib/global','ui/editor','ui/dialog'], function(require, expo
 							});
 						});
 					})(field);
+				}else if( field.type == 'file'){
+					(function(field){
+						div.find('input[name='+field.id+']').change(function(){
+							$('#'+field.fileTargetTipId).text('上传中');
+							$.ajaxFileUpload({
+								url:field.url,
+								secureuri:false,
+								fileElementId:field.fileTargetId,
+								dataType:'json',
+								success: function (data, status){
+									if( data.code != 0 ){
+										dialog.message('上传文件失败:'+data.msg);
+										return;
+									}
+									$('#'+field.fileTargetTipId).text('上传成功');
+									$('#'+defaultOption.id).find('div[name='+field.id+']').text(data.data);
+								},
+								error:function(data,status,e){
+									$('#'+field.fileTargetTipId).text('上传失败');
+									dialog.message('上传文件失败，请上传少于2M的文件并且符合mp3或midi格式');
+								}
+							});
+						});
+					})(field);
 				}else if( field.type == 'simpleEditor'){
 					field._editor = editor.simpleEditor({
 						id:field.editorTargetId
@@ -155,6 +183,8 @@ define('ui/input',['lib/global','ui/editor','ui/dialog'], function(require, expo
 					div.find('div[name='+field.id+']').text(defaultOption.value[field.id]);
 				else if( field.type == 'simpleEditor')
 					field._editor.setFormatData(defaultOption.value[field.id]);
+				else if( field.type == 'file')
+					div.find('div[name='+field.id+']').text(defaultOption.value[field.id]);
 				else if( field.type == 'image')
 					div.find('img[name='+field.id+']').attr("src",defaultOption.value[field.id]);
 				else if( field.type == 'area')
@@ -170,6 +200,8 @@ define('ui/input',['lib/global','ui/editor','ui/dialog'], function(require, expo
 				for( var i in defaultOption.field ){
 					var field = defaultOption.field[i];
 					if( field.type == 'read'){
+						data[field.id] = $.trim($('#'+defaultOption.id).find('div[name='+field.id+']').text());
+					}else if( field.type == 'file'){
 						data[field.id] = $.trim($('#'+defaultOption.id).find('div[name='+field.id+']').text());
 					}else if( field.type == 'simpleEditor'){
 						data[field.id] = field._editor.getFormatData();

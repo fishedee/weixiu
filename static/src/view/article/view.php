@@ -28,6 +28,7 @@
 					field:[
 						{id:'title',type:'text',name:'标题'},
 						{id:'templateId',type:'enum',name:'模板',map:templateMap},
+						{id:'sound',type:'file',name:'音乐',url:'/upload/music'},
 						{id:'content',type:'simpleEditor',name:'内容'},
 						{id:'remark',type:'text',name:'备注'},
 						{id:'state',type:'enum',name:'状态',map:{'0':'可用','1':'不可用'}},

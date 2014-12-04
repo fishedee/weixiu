@@ -6,6 +6,8 @@ for i in `ls ${ADMIN_OUT}`; do \
 		if [ "${j}" != "icon.jpg" -a "${j}" != "index.html" ];then \
 			rm ${ADMIN_OUT}/${i}/${j}/new_wsmain.js;\
 			ln -s ../../../js/new_wsmain.js ${ADMIN_OUT}/${i}/${j}/new_wsmain.js;\
+			rm ${ADMIN_OUT}/${i}/${j}/kaniu.gif;\
+			ln -s ../../../img/kaniu.gif ${ADMIN_OUT}/${i}/${j}/kaniu.gif;\
 		fi \
 	done \
 done

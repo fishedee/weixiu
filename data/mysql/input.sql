@@ -31,6 +31,7 @@ create table t_template(
 create table t_article(
 	articleId integer not null auto_increment,
 	title char(32) not null,
+	sound varchar(1024) not null,
 	templateId integer not null,
 	remark char(127) not null,
 	state integer not null,

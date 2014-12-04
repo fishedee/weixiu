@@ -573,7 +573,6 @@ define('lib/global',['lib/jquery'], function(require, exports, module) {
 								// process the data (runs the xml through httpData regardless of callback)
 								var data = jQuery.uploadHttpData(xml, s.dataType);    
 								// If a local callback was specified, fire it and pass it the data
-								console.log(data);
 								if (s.success)
 									s.success(data, status);
 			

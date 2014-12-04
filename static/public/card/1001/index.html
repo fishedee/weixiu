@@ -59,7 +59,7 @@
 			var fxnum = 1;
 			var fxlink = 'spage/1411/19/21/d47b0d3faf97.htm';
 		
-			var gSound = '/music/qingyinyue10.mp3';
+			var gSound = '<?php echo $data['sound'];?>';
 			var appId = '',
 				imgUrl = 'http://mmbiz.qpic.cn/mmbiz/xd4ic6ictILeFnIBa0H2QuKO6cEh19Ok1icfYmKQd5RaN6JADZnH6RybfyYJfZxorgdficS3P4GrnMiaCQCDczB3riag/0',
 				link = fxlink,
@@ -104,11 +104,11 @@
 				<br>
 				<br>
 				<h1 id="activity-name">
-					我的微秀
+					<?php echo $data['title'];?>
 				</h1> 
 				<p class="activity-info">
 					<span id="post-date" class="activity-meta no-extra" style="color:#ffffff;top:0%;">
-						2014-11-19 21:16:22
+						<?php echo $data['createTime'];?>
 					</span>
 				</p>
 			</div>				
@@ -119,6 +119,7 @@
 		<div class="page-content">
 			
 			<div class="text">
+				<?php echo $data['content'];?>
 			</div>
 			
 			<script src="/card/1001/index_files/footgif.js"></script><div style="text-align:center;z-index:20000;" onclick="goguanzhu();"><img width="300px" src="/card/1001/index_files/kaniu.gif"></div>
@@ -131,12 +132,6 @@
 		<script src="/card/1001/index_files/footad.js"></script>
 		<script src="/js/card.js"></script>
 		<script>
-			fillData({
-				type:'normal',
-				titleTarget:'#activity-name',
-				timeTarget:'#post-date',
-				contentTarget:'.text',
-			});
 		</script>		
     
 
